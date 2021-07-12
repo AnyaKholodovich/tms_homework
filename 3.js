@@ -6,20 +6,17 @@
 
 
 function cleanRoom(dirtyLevel) {
-    let cleaningTime = 0;
-
-    let cleanRoom = new Promise((resolve, reject) => {
-      if (dirtyLevel < 10) {
-        setTimeout(() => reject(cleaningTime), cleaningTime);
+    return new Promise(function(resolve, reject) {
+      if ( dirtyLevel < 10) {
+        setTimeout(() => resolve(dirtyLevel), dirtyLevel * 1000);
       } else {
-        setTimeout(() => resolve(cleaningTime), cleaningTime);
+        setTimeout(() => reject('Ошибка!'), dirtyLevel);
       }
     });
-    cleanRoom.then(
-        result => console.log(`Уборка проведена успешно за ${result} секунд`), 
-        error => console.log(error)
-    )
-    return console.log(cleanRoom);
-}
+};
 
-cleanRoom(8);
+cleanRoom(1).then(
+  result => console.log(`Уборка проведена успешно за ${result} секунд`), 
+  error => console.log(error)
+)
+

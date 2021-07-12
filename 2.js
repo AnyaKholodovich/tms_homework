@@ -8,18 +8,35 @@
 
 
 
-function cleanRoom (dirtyLevel){
-    let cleaningTime = dirtyLevel * 1000;
-    let cleanRoom = new Promise(function(resolve, reject) {
-        setTimeout(() => resolve(cleaningTime), cleaningTime);
-    });
+// function cleanRoom (dirtyLevel){
+    
+//     let cleaningTime = dirtyLevel * 1000;
+//     let cleanRoom = new Promise(function(resolve, reject) {
+//         setTimeout(() => resolve(cleaningTime), cleaningTime);
+//     });
 
-    cleanRoom.then(
-        result => console.log(`Уборка проведена успешно за ${result} секунд`), 
-        error => console.log(error) 
-    );
-    return console.log(cleanRoom);
-};
+//     cleanRoom.then(
+//         result => console.log(`Уборка проведена успешно за ${result} секунд`), 
+//         error => console.log(error) 
+//     );
+//     return console.log(cleanRoom);
+// };
 
-cleanRoom(8);
+// cleanRoom(8);
 
+function cleanRoom(dirtyLevel) {
+
+	return new Promise(function (resolve, reject) {
+        if(typeof (dirtyLevel) !== 'number' || dirtyLevel < 0 || dirtyLevel > 10 || isNaN(dirtyLevel)){
+
+            setTimeout(() => reject('Ошибка!'), dirtyLevel);
+        }else{
+            setTimeout(() => resolve(dirtyLevel), dirtyLevel * 1000);
+        }	
+	});
+}
+
+cleanRoom(8).then(
+	result => console.log(`Уборка проведена успешно за ${result} секунд`),
+	error => console.log(`Ошибка!`)
+);

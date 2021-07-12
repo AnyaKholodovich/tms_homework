@@ -9,11 +9,20 @@
 
 
 
-let cleanRoom = new Promise(function(resolve, reject) {
-    setTimeout(() => resolve("Команата убрана"), 5000);
-});
+// let cleanRoom = new Promise(function(resolve, reject) {
+//     setTimeout(() => resolve("Команата убрана"), 5000);
+// }).then(
+//     result => console.log(result), 
+//     error => console.log(error) 
+// );
 
-cleanRoom.then(
+function cleanRoom(){
+    return new Promise(resolve => {
+        setTimeout(() => resolve("Команата убрана"), 5000);
+    });
+}
+
+cleanRoom(8).then(
     result => console.log(result), 
     error => console.log(error) 
 );
